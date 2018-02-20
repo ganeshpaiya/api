@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+ 
+</head>
+<body>
+<script>
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://www.apilayer.net/api/live?access_key=554bb428db5289918e51a977b8bd54d1",
+  "method": "GET",
+  "headers": {
+    "Cache-Control": "no-cache",
+	"Access-Control-Allow-Origin" : "*",
+	"Access-Control-Allow-Credentials": "true",
+	"Access-Control-Expose-Headers" :"FooBar",
+     "Content-Type":"text/html; charset=utf-8",
+
+    "Postman-Token": "4f9df637-5b93-94a5-e706-b1a27eb56b1a"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+</script>
+</body>
+</html>

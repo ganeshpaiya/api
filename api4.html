@@ -1,0 +1,68 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<title>Sample Page</title>
+<script>
+var myObj, i, x = "";
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://yts.am/api/v2/list_movies.json",
+  "method": "GET",
+  "headers": {
+    "Cache-Control": "no-cache",
+	"Access-Control-Allow-Origin" : "*",
+    "Postman-Token": "48975ae2-6e25-8ca6-c507-8ccd4adb599e"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+var obj=JSON.parse(response);
+var cnt = "<table border=1>";
+ alert("test");
+for (var i=0; i < obj.MINI.length; i++){
+    alert("test");
+	for (var j=0; j < obj.MINI.length; j++){
+    cnt += "<tr>";
+    $.each(obj.MINI, function(key,value){
+       cnt += "<td><strong>" + key + "</strong></td>";
+	  });
+	   cnt += "</tr>";
+	   }
+    
+   
+}
+cnt += "</table>";
+
+
+  alert(cnt);
+ 
+
+});
+
+//var settings = {
+  //"async": true,
+  //"crossDomain": true,
+  //"url": "https://simple-weather.p.mashape.com/weatherdata?lat=37.3710062&lng=-122.0375935",
+ //"url": "https://yts.am/api/v2/list_movies.json",
+  //"method": "GET",
+  //"dataType": "json",
+  //"headers": {
+  //  "accept": "application/json",
+   // "x-mashape-key": "EF3g83pKnzmshgoksF83V6JB6QyTp1cGrrdjsnczTkkYgYrp8p",
+   // "cache-control": "no-cache",
+   // "postman-token": "e41085c0-de85-0002-53ea-b64558309c68"
+   //}
+// }
+
+//$.ajax(settings).done(function (response) {
+  //console.log(response);
+  
+//});
+</script>
+<body>
+<p id="demo"></p>
+  <h3>Open the JS Console (View > Developer > JavaScript Console) to see the object returned.</h3>
+</body>
+</html>

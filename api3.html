@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Consume a REST Web Service</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"/>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+<p><div id="myOutput">Output Goes Here</div><p>
+<p><input id="myButton" value="Get Artist" type="submit" /></p>
+<p><input id="myClearButton" value="Clear Artist" type="submit" /></p>
+<script type="text/javascript">
+ $("#myButton").click(function() {
+        var artistURL = "http://development.dlwelch.com/examples/restservice/JazzArtists.svc/json/Shirley";
+        var returnData = "";
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: true,
+            url: artistURL,
+            error: function(request, status, error) { alert(request.responseText) },
+            success: function(data) {
+                $("div#myOutput").html(" ");
+                returnData = "<table style='font-size:8pt;'><tr><th>Artist</th><th>Grammys</th></tr>";
+                for (prop in data) {
+                    if (!data.hasOwnProperty(prop)) { continue; }
+                    if (data[prop] != null) {
+                        for (var i = 0; i < data[prop].length; i++) {
+                            returnData += "<tr><td>" + data[prop][i]["FirstName"] 
+                                       + " " + data[prop][i]["LastName"] + "</td><td align='right'>"
+                                       + data[prop][i]["Grammy"] + "</td></tr>";
+                        }
+                    }
+                }
+                returnData = returnData + "</table>";
+                $("div#myOutput").html(returnData);
+            }
+        });
+        return (false);
+    });
+</script>
+<script type="text/javascript">
+ $("#myClearButton").click(function() {
+        $("div#myOutput").html("Output Goes Here");
+        return (false);
+    });
+	
+	
+ 
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+   var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://yts.am/api/v2/list_movies.json",
+  "method": "GET",
+  "headers": {
+    "Cache-Control": "no-cache",
+    "Postman-Token": "8bc6163f-0a04-8717-a244-23908b1035ee"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+});
+</script>
+</body>
+</html>

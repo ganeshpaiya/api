@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="hello.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+    $.ajax({
+        //url: "http://rest-service.guides.spring.io/greeting"
+		 url: "https://public-api.wordpress.com/rest/v1/sites/82974409"
+    }).then(function(data) {
+       $('.greeting-id').append(data.ID);
+       $('.greeting-content').append(data.name);
+    });
+});
+</script>
+<script type="text/javascript">
+		$(document).ready(function() {
+        $.ajax({
+       url: "http://iwashthecarspa.com/api/washtype.php"
+		// url: "https://yts.am/api/v2/list_movies.json"
+    }).then(function(data) {
+	
+      $('.greeting-mo').append(data.id);
+       //$('.greeting-mo1').append(data.movies);
+    });
+});
+</script>
+    </head>
+
+    <body>
+        <div>
+            <p class="greeting-id">The ID is: </p>
+            <p class="greeting-content">The Nmae is: </p>
+        </div>
+		<div>
+            <p class="greeting-mo">The ID is: </p>
+            <p class="greeting-mo1">The Nmae is: </p>
+        </div>
+		
+    </body>
+</html>
