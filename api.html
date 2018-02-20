@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="hello.js"></script>
+   
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+       url: "http://iwashthecarspa.com/api/washtype.php"
+    // url: "https://yts.am/api/v2/list_movies.json"
+    }).then(function(data) {
+   //alert(data);
+   var items = JSON.parse(data);
+ 
+   var arrlgn= items.MINI;
+   var i = 0, result = [];
+
+while(i < arrlgn.length){
+    result.push([])
+    for(var key in arrlgn[i].id){
+  //alert(arrlgn[i].id,arrlgn[i].category_name,arrlgn[i].key,arrlgn[i].category_data,arrlgn[i].image_url,arrlgn[i].status);
+  //alert(arrlgn[i].category_name,arrlgn[i].key,arrlgn[i].category_data,arrlgn[i].image_url,arrlgn[i].status);
+  //alert(arrlgn[i].key,arrlgn[i].category_data,arrlgn[i].image_url,arrlgn[i].status);
+  //alert(arrlgn[i].key,arrlgn[i].category_data,arrlgn[i].image_url,arrlgn[i].status);
+        //result[result.length-1].push(arrlgn[i].category_name[key])
+    var tr;
+       
+            tr = $('<tr/>');
+            tr.append("<td>" + arrlgn[i].id + "</td>");
+            tr.append("<td>" + arrlgn[i].category_name + "</td>");
+      tr.append("<td>" + arrlgn[i].key + "</td>");
+      tr.append("<td>" + arrlgn[i].category_data + "</td>");
+            tr.append("<td><img width=100px height=50px src= " + arrlgn[i].image_url + "></td>");
+       tr.append("<td>" + arrlgn[i].status + "</td>");
+            $('table').append(tr);
+        
+    }
+    i++
+}
+
+//document.write(JSON.stringify(result, null, 4));
+      $('.greeting-mo').append(data.id);
+       //$('.greeting-mo1').append(data.movies);
+    });
+});
+</script>
+    </head>
+
+    <body>
+  
+  <table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Category Name</th>
+        <th>Key</th>
+    <th>Category Data</th>
+    <th>Images</th>
+    <th>Status</th>
+    </tr>
+</table>
+        
+    
+    </body>
+</html>
